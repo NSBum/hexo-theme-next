@@ -13,7 +13,7 @@ $(document).ready(function() {
     $imageWrapLink.attr('rel', 'group');
 
     if (imageTitle) {
-      $imageWrapLink.append('<p class="image-caption">' + imageTitle + '</p>');
+      $imageWrapLink.append('<figcaption class="image-caption">' + imageTitle + '</figcaption>')
       $imageWrapLink.attr("title", imageTitle); //make sure img title tag will show correctly in fancybox
     }
   });
@@ -26,5 +26,3 @@ $('.fancybox').fancybox({
     }
   }
 });
-
-
