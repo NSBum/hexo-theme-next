@@ -3,13 +3,7 @@
   {% set headlessPost = Array.prototype.indexOf.call(['quote', 'picture'], post.type) > -1 %}
   {% set navlessPost = headlessPost %}
 
-  {% set post_class = 'post post-type-' + post.type | default('normal') %}
-  {% set post_class = post_class + ' ' + post_extra_class | default('') %}
-  {% if post.sticky > 0 %}
-    {% set post_class = post_class + ' ' + 'post-sticky' %}
-  {% endif %}
-
-  <article class="{{ post_class }}" itemscope itemtype="http://schema.org/Article">
+  <article class="post post-type-{{ post.type | default('normal') }} {{ post_extra_class | default('') }}" itemscope itemtype="http://schema.org/Article">
 
     {% if not headlessPost %}
       <header class="post-header">
@@ -19,23 +13,12 @@
           <h1 class="post-title" itemprop="name headline">
             {# Link posts #}
             {% if post.link %}
-              {% if post.sticky > 0 %}
-                {{ post.sticky }}
-                <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
-                  <i class="fa fa-thumb-tack"></i>
-                </span>
-              {% endif %}
               <a class="post-title-link post-title-link-external" target="_blank" href="{{ url_for(post.link) }}" itemprop="url">
                 {{ post.title or post.link }}
-                <i class="fa fa-external-link"></i>
+                <i class="fa fa-external-link-square"></i>
               </a>
             {% else %}
               {% if is_index %}
-                {% if post.sticky > 0 %}
-                  <span class="post-sticky-flag" title="{{ __('post.sticky') }}">
-                    <i class="fa fa-thumb-tack"></i>
-                  </span>
-                {% endif %}
                 <a class="post-title-link" href="{{ url_for(post.path) }}" itemprop="url">
                   {{ post.title | default(__('post.untitled'))}}
                 </a>
@@ -173,18 +156,18 @@
 
       {% if not is_index and (post.prev or post.next) and not navlessPost %}
         <div class="post-nav">
-          <div class="post-nav-next post-nav-item">
-            {% if post.next %}
-              <a href="{{ url_for(post.next.path) }}" rel="next" title="{{ post.next.title }}">
-                <i class="fa fa-chevron-left"></i> {{ post.next.title }}
+          <div class="post-nav-prev post-nav-item">
+            {% if post.prev %}
+              <a href="{{ url_for(post.prev.path) }}" rel="prev">
+                <i class="fa fa-chevron-left"></i> {{post.prev.title}}
               </a>
             {% endif %}
           </div>
 
-          <div class="post-nav-prev post-nav-item">
-            {% if post.prev %}
-              <a href="{{ url_for(post.prev.path) }}" rel="prev" title="{{ post.prev.title }}">
-                {{post.prev.title}} <i class="fa fa-chevron-right"></i>
+          <div class="post-nav-next post-nav-item">
+            {% if post.next %}
+              <a href="{{ url_for(post.next.path) }}" rel="next">
+                {{post.next.title}} <i class="fa fa-chevron-right"></i>
               </a>
             {% endif %}
           </div>

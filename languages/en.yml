@@ -9,14 +9,18 @@ menu:
   categories: Categories
   tags: Tags
   about: About
+  resources: Resources
+  links: Links
+  gallery: Gallery
   search: Search
+  rss: Subscribe
+  contact: Contact
 
 sidebar:
   overview: Overview
   toc: Table Of Contents
 
 post:
-  sticky: Sticky
   posted: Posted on
   in: In
   read_more: Read more

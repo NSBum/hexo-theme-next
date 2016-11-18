@@ -22,8 +22,13 @@
         <div class="tag-cloud-title">
             {{ _p('counter.tag_cloud', site.tags.length) }}
         </div>
+        {#
+          The start color for the tag cloud was #ccc; but it's very hard to see against white. Trying #bbb.
+        #}
+        {% set theme_start_color = "#" + theme.tagcloud.start %}
+        {% set theme_end_color = "#" + theme.tagcloud.end %}
         <div class="tag-cloud-tags">
-          {{ tagcloud({min_font: 12, max_font: 30, amount: 200, color: true, start_color: '#ccc', end_color: '#111'}) }}
+          {{ tagcloud({min_font: 12, max_font: 30, amount: 200, color: true, start_color: theme_start_color, end_color: theme_end_color}) }}
         </div>
       </div>
     {% elif page.type === 'categories' %}

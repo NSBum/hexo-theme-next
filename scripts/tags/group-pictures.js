@@ -10,7 +10,7 @@ function groupPicture(args, content) {
   content = hexo.render.renderSync({text: content, engine: 'markdown'});
 
   var pictures = content.match(/<img[\s\S]*?>/g);
-
+console.log(pictures)
   return '<div class="group-picture">' +
             templates.dispatch(pictures, group, layout) +
          '</div>';

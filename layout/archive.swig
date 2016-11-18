@@ -14,6 +14,7 @@
     <span class="archive-page-counter">
       {% set cheers %}
       {% set posts_length = site.posts.length %}
+      {% if theme.show_keep_on %}
       {% if posts_length > 210 %} {% set cheers = 'excellent' %}
         {% elif posts_length > 130 %} {% set cheers = 'great' %}
         {% elif posts_length > 80 %} {% set cheers = 'good' %}
@@ -23,6 +24,9 @@
         {% set cheers = 'um' %}
       {% endif %}
       {{ __('cheers.' + cheers) }}! {{ _p("counter.archive_posts", site.posts.length) }} {{ __('keep_on') }}
+      {% else %}
+        {{ _p("counter.archive_posts", site.posts.length) }}
+      {% endif %}
     </span>
 
     {% for post in page.posts %}
